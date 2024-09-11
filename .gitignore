@@ -1,1 +1,4 @@
 node_modules
+backend/backend/__pycache__
+backend/users/__pycache__
+backend/users/migrations/__pycache__
