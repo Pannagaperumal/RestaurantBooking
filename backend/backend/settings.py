@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "users",
+    'menu',
     'rest_framework',
     'rest_framework_simplejwt',
     'drf_yasg',
