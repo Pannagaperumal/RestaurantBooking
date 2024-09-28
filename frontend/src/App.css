@@ -1,42 +1,177 @@
-#root {
-  max-width: 1280px;
+/* App.css */
+
+/* General Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  max-width: 800px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 20px;
+}
+
+/* 3D Button Styles */
+.button-3d {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  font-size: 16px;
+  margin: 6px 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 5px #999;
+  border-radius: 5px;
+}
+
+.button-3d:active {
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
+}
+
+/* Form Styles */
+.form-container {
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.form-container h2 {
+  margin-top: 0;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container select,
+.form-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  background: #e0e0e0;
+  box-shadow: inset 5px 5px 10px #bebebe,
+              inset -5px -5px 10px #ffffff;
+}
+
+.form-container input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.form-container button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #2196F3;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 5px #0b7dda;
+}
+
+.form-container button:active {
+  box-shadow: 0 2px #0b7dda;
+  transform: translateY(4px);
+}
+
+/* List Styles */
+.list-container {
+  margin-top: 20px;
+}
+
+.list-item {
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.list-item h3 {
+  margin: 0 0 10px 0;
+}
+
+.list-item p {
+  margin: 0 0 10px 0;
+}
+
+.list-item .actions {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.list-item .actions button {
+  background-color: transparent;
+  border: none;
+  color: #2196F3;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.list-item .actions button:hover {
+  color: #0b7dda;
+}
+
+/* Navigation Styles */
+nav {
+  margin-bottom: 20px;
+}
+
+nav a {
+  color: #2196F3;
+  text-decoration: none;
+  margin-right: 15px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #0b7dda;
+}
+
+/* Heading Styles */
+h1, h2 {
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+h1 {
+  font-size: 36px;
+  margin-top: 0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Filters */
+.filters {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.filters label {
+  flex: 1;
+  margin-right: 10px;
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.filters select {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #e0e0e0;
+  box-shadow: inset 5px 5px 10px #bebebe,
+              inset -5px -5px 10px #ffffff;
 }
