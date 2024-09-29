@@ -2,3 +2,6 @@ node_modules
 backend/backend/__pycache__
 backend/users/__pycache__
 backend/users/migrations/__pycache__
+backend/menu/__pycache__
+backend/menu/migrations
+backend/menu/__init__.py
