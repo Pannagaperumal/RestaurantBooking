@@ -1,5 +1,3 @@
-// src/components/FoodItemForm.jsx
-
 import React, { useState, useEffect } from 'react';
 import {
   createFoodItem,
@@ -8,6 +6,7 @@ import {
   fetchCategories,
 } from '../api';
 import { useNavigate, useParams } from 'react-router-dom';
+import './FoodItemForm.css';
 
 function FoodItemForm() {
   const [name, setName] = useState('');
@@ -72,55 +71,100 @@ function FoodItemForm() {
     }
   };
 
+  const selectedCategory = categories.find(cat => cat.id === categoryId);
+
   return (
     <div className="form-container">
-      <h2>{isEditMode ? 'Edit Food Item' : 'Add New Food Item'}</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Category:
-          <select
-            value={categoryId}
-            onChange={(e) => setCategoryId(e.target.value)}
-            required
-          >
-            <option value="">Select a Category</option>
-            {categories.map((cat) => (
-              <option key={cat.id} value={cat.id}>
-                {cat.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Price:
-          <input
-            type="number"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            required
-            step="0.01"
-          />
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={isVeg}
-            onChange={(e) => setIsVeg(e.target.checked)}
-          />
-          Is Veg
-        </label>
-        <button type="submit">{isEditMode ? 'Update' : 'Create'}</button>
-      </form>
+      <div className="form-wrapper">
+        <div className="form-section">
+          <div className="form-card">
+            <h2>{isEditMode ? 'Edit Food Item' : 'Add New Food Item'}</h2>
+            {error && <div className="error-message">{error}</div>}
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="name">Name</label>
+                <input
+                  id="name"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="category">Category</label>
+                <select
+                  id="category"
+                  value={categoryId}
+                  onChange={(e) => setCategoryId(e.target.value)}
+                  required
+                >
+                  <option value="">Select a Category</option>
+                  {categories.map((cat) => (
+                    <option key={cat.id} value={cat.id}>
+                      {cat.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="price">Price</label>
+                <input
+                  id="price"
+                  type="number"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                  required
+                  step="0.01"
+                />
+              </div>
+              <div className="form-group checkbox-group">
+                <label className="checkbox-label">
+                  <input
+                    type="checkbox"
+                    checked={isVeg}
+                    onChange={(e) => setIsVeg(e.target.checked)}
+                  />
+                  <span>Vegetarian</span>
+                </label>
+              </div>
+              <button type="submit" className="submit-button">
+                {isEditMode ? 'Update Food Item' : 'Add Food Item'}
+              </button>
+            </form>
+          </div>
+        </div>
+        
+        <div className="preview-section">
+          <div className="preview-card">
+            <h2>Preview</h2>
+            <div className="preview-content">
+              {name ? (
+                <div className="food-item-preview">
+                  <div className="preview-header">
+                    <h3>{name}</h3>
+                    {isVeg && (
+                      <span className="veg-indicator">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                      </span>
+                    )}
+                  </div>
+                  {selectedCategory && (
+                    <p className="category-tag">{selectedCategory.name}</p>
+                  )}
+                  {price && (
+                    <p className="price-tag">${parseFloat(price).toFixed(2)}</p>
+                  )}
+                </div>
+              ) : (
+                <p className="preview-placeholder">Fill out the form to see a preview</p>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
