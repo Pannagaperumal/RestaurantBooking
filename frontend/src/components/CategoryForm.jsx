@@ -7,6 +7,8 @@ function CategoryForm() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
   const { id } = useParams();
   const isEditMode = Boolean(id);
@@ -26,9 +28,23 @@ function CategoryForm() {
       loadCategory();
     }
   }, [id, isEditMode]);
+  const loadCategory = async () => {
+    try {
+      setIsLoading(true);
+      const data = await fetchCategoryById(id);
+      setName(data.name);
+      setDescription(data.description || '');
+    } catch (error) {
+      setError('Failed to load category. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    setError('');
     const categoryData = { name, description };
     try {
       if (isEditMode) {
@@ -42,6 +58,7 @@ function CategoryForm() {
       setError('Failed to save category');
     }
   };
+  
 
   return (
     <div className="form-container">
@@ -70,8 +87,8 @@ function CategoryForm() {
                   rows={4}
                 />
               </div>
-              <button type="submit" className="submit-button">
-                {isEditMode ? 'Update Category' : 'Create Category'}
+              <button type="submit" className="submit-button" disabled={isLoading}>
+                {isLoading?'Saving...':isEditMode ? 'Update Category' : 'Create Category'}
               </button>
             </form>
           </div>

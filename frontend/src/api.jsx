@@ -1,15 +1,18 @@
 // src/api.js
 
 const API_URL = 'http://localhost:8000/api';  // Adjust this to your Django server URL
-
 export const fetchCategories = async () => {
-  const response = await fetch(`${API_URL}/categories/`);
-  if (!response.ok) {
-    throw new Error('Failed to fetch categories');
+  try {
+    const response = await fetch(`${API_URL}/categories/`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    throw error;
   }
-  return response.json();
 };
-
 export const fetchCategoryById = async (id) => {
   const response = await fetch(`${API_URL}/categories/${id}/`);
   if (!response.ok) {
@@ -19,19 +22,23 @@ export const fetchCategoryById = async (id) => {
 };
 
 export const createCategory = async (categoryData) => {
-  const response = await fetch(`${API_URL}/categories/`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(categoryData)
-  });
-  if (!response.ok) {
-    throw new Error('Failed to create category');
+  try {
+    const response = await fetch(`${API_URL}/categories/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(categoryData),
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error creating category:', error);
+    throw error;
   }
-  return response.json();
 };
-
 export const updateCategory = async (id, categoryData) => {
   const response = await fetch(`${API_URL}/categories/${id}/`, {
     method: 'PUT',

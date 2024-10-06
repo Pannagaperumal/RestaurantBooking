@@ -16,7 +16,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import include, path
+from django.urls import path
 from .views import (
     CategoryList, CategoryDetail,
     FoodItemList, FoodItemDetail,
@@ -26,10 +26,11 @@ urlpatterns = [
     # Category URLs
     path('categories/', CategoryList.as_view(), name='category-list'),
     path('categories/<int:pk>/', CategoryDetail.as_view(), name='category-detail'),
-
+    
     # FoodItem URLs
     path('food-items/', FoodItemList.as_view(), name='fooditem-list'),
     path('food-items/<int:pk>/', FoodItemDetail.as_view(), name='fooditem-detail'),
+
 
     # CartItem URLs
     # path('cart-items/', CartItemList.as_view(), name='cartitem-list'),
