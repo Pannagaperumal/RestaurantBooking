@@ -1,0 +1,156 @@
+/* CategoryList.css */
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.18);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    --text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  body {
+    background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .category-list-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    font-family: 'Arial', sans-serif;
+    background: var(--glass-bg);
+    backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+  
+  .category-list-title {
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-shadow: var(--text-shadow);
+  }
+  
+  .category-form {
+    background: var(--glass-bg);
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: var(--glass-shadow);
+    border: var(--glass-border);
+  }
+  
+  .category-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: all 0.3s ease;
+  }
+  
+  .category-form input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .category-form input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+  }
+  
+  .button-3d {
+    background: linear-gradient(45deg, #00aeff, #a68eff);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-shadow: var(--text-shadow);
+  }
+  
+  .button-3d:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 7px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .button-3d:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .category-item {
+    background: var(--glass-bg);
+    border: var(--glass-border);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+    box-shadow: var(--glass-shadow);
+    transform: perspective(1000px) rotateX(0deg);
+  }
+  
+  .category-item:hover {
+    transform: perspective(1000px) rotateX(5deg) translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .category-item h3 {
+    color: white;
+    margin-top: 0;
+    font-size: 1.4em;
+    text-shadow: var(--text-shadow);
+  }
+  
+  .category-item p {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .category-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .category-actions button {
+    margin-left: 10px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-shadow: var(--text-shadow);
+  }
+  
+  .edit-button {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+  }
+  
+  .delete-button {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    color: white;
+  }
+  
+  .edit-button:hover, .delete-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .category-item {
+    animation: fadeIn 0.5s ease-out;
+  }
