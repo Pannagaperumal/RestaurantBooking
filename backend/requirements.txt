@@ -1,0 +1,15 @@
+# Django Framework
+Django==4.2.4
+
+# Database
+psycopg2-binary==2.9.6  # For PostgreSQL database
+djangorestframework==3.14.0
+djangorestframework-simplejwt==5.2.2  # For JWT authentication
+django-cors-headers==3.14.0
+python-dotenv==1.0.0
+django-storages==1.14.1
+gunicorn==20.1.0  # WSGI HTTP Server for UNIX for deployment
+whitenoise==6.4.0  # Simplified static file serving
+flake8==6.1.0
+pytest==7.4.0
+pytest-django==4.5.2
