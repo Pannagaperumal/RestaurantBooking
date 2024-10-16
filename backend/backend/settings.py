@@ -11,20 +11,30 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+from environ import Env
+env=Env()
+env.read_env()
+ENVIRONMENT = env('ENVIRONMENT',default='Development')
+POSTGRESS_LOCAL = env('POSTGRESS_LOCAL',default='False')
+print("Using Postgress Local: ",POSTGRESS_LOCAL)
+print("Environment: ",ENVIRONMENT)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_f2i0b)q8jv2v)0f=r8^tcta8i)kvqu%#bf)apl@ql5elt12ms'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+if ENVIRONMENT == 'Development':
+    DEBUG = True
+else:
+    DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 
@@ -114,6 +124,8 @@ DATABASES = {
     }
 }
 
+if POSTGRESS_LOCAL=='True' and ENVIRONMENT == 'Production':
+    DATABASES['default'] = dj_database_url.parse(env('DATABASE_URL'))
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
